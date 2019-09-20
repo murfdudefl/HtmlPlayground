@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <script src="Spirograph.js" lang="javacript" type="text/javascript"></script> -->
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="300">Your browser does not support the HTML5 canvas tag.</canvas>
+    <script lang="javascript" type="text/javascript">
+
+        // see this link for algorithm to draw a point on the path of a circle
+        // https://stackoverflow.com/questions/32681610/drawing-point-on-circle
+        drawStuff();
+
+        function drawCircle() {
+            ctx.beginPath();
+            ctx.arc(center_x, center_y, radius, 0, 1 * Math.PI);
+            ctx.stroke();
+        }
+
+        function drawCirclePoint(context, xCtr, yCtr, radius, position, color) {
+            // ctx.beginPath();
+            // if (oldPosition <> -1) {
+            //     ctx.arc(center_x, center_y, radius, (oldPosition / 180) * Math.PI, ((oldPosition +1) / 180) * Math.PI);
+            //     context1.strokeStyle="white";
+            //     ctx.stroke();
+            // }
+
+            context.beginPath();
+            context.arc(xCtr, yCtr, radius, (position / 180) * Math.PI, ((position + 3) / 180) * Math.PI);
+            context.strokeStyle = color;
+            context.stroke();
+        }
+
+        //Execution
+        function drawStuff() {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var radius = 80;
+            var point_size = 4;
+            var center_x = 150;
+            var center_y = 150;
+            var font_size = "20px";
+            // drawCircle();
+            // var x = center_x + 10 + radius * Math.cos(-angle * Math.PI / 180) * distance;
+            // var y = center_y + 10 + radius * Math.sin(-angle * Math.PI / 180) * distance;
+            var backColor = "#000000";
+            var foreColor = "#ff0000";
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (i = 0; i < 180; i++) {
+                console.log("Loop count: " + i);
+                if (i !== 0) {
+                    // drawCirclePoint(ctx, center_x, center_y, radius, i - 1, backColor);
+                }
+                drawCirclePoint(ctx, center_x, center_y, radius, i, foreColor);
+                sleep(40);
+            }
+
+            function sleep(delay) {
+                var start = new Date().getTime();
+                while (new Date().getTime() < start + delay);
+            }
+
+            function drawPoint(angle, distance, label) {
+                // var x = center_x + radius * Math.cos(-angle * Math.PI / 180) * distance;
+                // var y = center_y + radius * Math.sin(-angle * Math.PI / 180) * distance;
+
+                ctx.beginPath();
+                ctx.arc(x, y, point_size, 0, 2 * Math.PI);
+                // ctx.arc(x, y, point_size, 0, 1 * Math.PI);
+                ctx.fill();
+
+                ctx.font = font_size;
+                ctx.fillText(label, x + 10, y);
+            }
+
+            // drawCircle();
+            // drawPoint(0, 1, "A");
+            // drawPoint(90, 1.5, "B");
+            // drawPoint(180, 1, "C");
+            // drawPoint(45, 0.5, "D");
+        }    
+    </script>
+</body>
+
+</html>

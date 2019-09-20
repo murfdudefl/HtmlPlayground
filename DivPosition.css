@@ -1,0 +1,15 @@
+body {
+    /* font-family: sans-serif; */
+    /* font-size: 62.5%;   /* 1em = 10px */
+}
+.headerOutside {
+    font-size: 6rem;
+}
+.headerRight {
+    text-align: right;
+}
+
+.headerCenter {
+    text-align: center;
+    /* padding-top: 2em; */
+}
